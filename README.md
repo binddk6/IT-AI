@@ -1,6 +1,6 @@
-# IT Infrastructure & Networking Chatbot MVP
+# TCS IT & Networking Assistant
 
-A **2-stage** MVP chatbot specifically designed for IT infrastructure and networking documentation. This solution uses a clean separation between document processing (ingestion) and user interaction (Q&A app).
+A **2-stage** IT assistant for TCS infrastructure and networking documentation. Clean separation between document processing (ingestion) and user interaction (Q&A app).
 
 ## 🏗️ Architecture (2-Stage Design)
 
@@ -230,15 +230,6 @@ The knowledge base uses JSON Lines format:
 - [ ] API rate limiting
 - [ ] Monitoring and analytics
 - [ ] Docker containerization
-
-### Advanced Features
-
-- [ ] Multi-language support
-- [ ] Image and diagram extraction
-- [ ] Document similarity detection
-- [ ] Custom model fine-tuning
-- [ ] Advanced search filters
-- [ ] Document summarization
 
 ## 🔄 Scripts Reference
 
