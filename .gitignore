@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Data directories
+data/documents/*
+data/processed/*
+
+# Keep directory structure but ignore content
+!data/documents/.gitkeep
+!data/processed/.gitkeep
+
+# Logs
+logs
+*.log
+
+# MacOS
+.DS_Store
+
+# Editor directories and files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Temporary files
+temp/
+tmp/
+*.tmp
+
+# Test files (workaround for pdf-parse library issue)
+test/
