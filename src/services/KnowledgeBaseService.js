@@ -22,51 +22,58 @@ export class KnowledgeBaseService {
   }
 
   async loadKnowledgeBase() {
-    if (this.loaded) return;
+    if (this.loaded) return true;
 
     if (!(await fs.pathExists(this.knowledgeFile))) {
       // Don't throw error, just return false to indicate KB is not available
+      console.log("❌ Knowledge base file not found:", this.knowledgeFile);
       return false;
     }
 
     console.log("📚 Loading knowledge base...");
 
-    this.chunks = [];
-    this.documents = [];
+    try {
+      this.chunks = [];
+      this.documents = [];
 
-    const fileStream = fs.createReadStream(this.knowledgeFile);
-    const rl = readline.createInterface({
-      input: fileStream,
-      crlfDelay: Infinity,
-    });
+      const fileStream = fs.createReadStream(this.knowledgeFile);
+      const rl = readline.createInterface({
+        input: fileStream,
+        crlfDelay: Infinity,
+      });
 
-    let chunkCount = 0;
-    let docCount = 0;
+      let chunkCount = 0;
+      let docCount = 0;
 
-    for await (const line of rl) {
-      if (line.trim()) {
-        try {
-          const data = JSON.parse(line);
+      for await (const line of rl) {
+        if (line.trim()) {
+          try {
+            const data = JSON.parse(line);
 
-          if (data.type === "document") {
-            this.documents.push(data);
-            docCount++;
-          } else if (data.type === "chunk") {
-            this.chunks.push(data);
-            chunkCount++;
+            if (data.type === "document") {
+              this.documents.push(data);
+              docCount++;
+            } else if (data.type === "chunk") {
+              this.chunks.push(data);
+              chunkCount++;
+            }
+          } catch (error) {
+            console.error("Error parsing line:", error.message);
           }
-        } catch (error) {
-          console.error("Error parsing line:", error.message);
         }
       }
+
+      console.log(`✅ Knowledge base loaded:`);
+      console.log(`   📄 Documents: ${docCount}`);
+      console.log(`   📦 Chunks: ${chunkCount}`);
+
+      this.loaded = true;
+      return true;
+    } catch (error) {
+      console.error("❌ Error loading knowledge base:", error);
+      this.loaded = false;
+      return false;
     }
-
-    console.log(`✅ Knowledge base loaded:`);
-    console.log(`   📄 Documents: ${docCount}`);
-    console.log(`   📦 Chunks: ${chunkCount}`);
-
-    this.loaded = true;
-    return true;
   }
 
   async getStats() {
