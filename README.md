@@ -1,4 +1,5 @@
 # TCS IT & Networking Assistant
+<img width="1570" height="1294" alt="image" src="https://github.com/user-attachments/assets/ac1b3578-f00b-4b89-bc0f-3be397b8c041" />
 
 A **2-stage** IT assistant for TCS infrastructure and networking documentation. Clean separation between document processing (ingestion) and user interaction (Q&A app).
 
